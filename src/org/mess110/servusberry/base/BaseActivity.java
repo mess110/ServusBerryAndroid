@@ -13,8 +13,8 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(Menu.NONE, ServusConst.ID_MENU_REFRESH, Menu.NONE, "refresh");
-		menu.add(Menu.NONE, ServusConst.ID_MENU_SETTINGS, Menu.NONE, "settings");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_REFRESH, Menu.NONE, "detect server");
+		//menu.add(Menu.NONE, ServusConst.ID_MENU_SETTINGS, Menu.NONE, "settings");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_FILE_SYSTEM, Menu.NONE, "file system");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_EXIT, Menu.NONE, "exit");
 

@@ -10,6 +10,10 @@ public class Util {
 		Log.d(ServusConst.LOG_TAG, text);
 	}
 
+	public static void log(int i) {
+		log(String.valueOf(i));
+	}
+
 	public static String pathJoin(String s1, String s2) {
 		if (s1.endsWith("/")) {
 			s1 = s1.substring(0, s1.length() - 1);
