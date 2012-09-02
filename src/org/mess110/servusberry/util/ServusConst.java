@@ -6,6 +6,7 @@ public class ServusConst {
 	public static final int ID_MENU_SETTINGS = 2;
 	public static final int ID_MENU_FILE_SYSTEM = 3;
 	public static final int ID_MENU_KILL_ALL = 4;
+	public static final int ID_MENU_PLAY = 5;
 
 	public static final String URL_KEY = "url";
 	public static final String DEFAULT_URL = "http://192.168.1.100:5000";

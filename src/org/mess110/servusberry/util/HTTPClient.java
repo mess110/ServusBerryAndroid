@@ -32,7 +32,7 @@ public class HTTPClient {
 		}
 		return result;
 	}
-	
+
 	public String killall() {
 		String result = "";
 		String url = pref.getUrl() + "/killall";

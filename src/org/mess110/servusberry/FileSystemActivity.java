@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+// TODO fix this class
+// specifically the JSON part
 public class FileSystemActivity extends BaseListActivity {
 	private HTTPClient http;
 	private String path;
@@ -56,7 +58,6 @@ public class FileSystemActivity extends BaseListActivity {
 					int position, long id) {
 				String s = (String) (((TextView) view).getText());
 				String newPath = Util.pathJoin(path, s);
-				Util.log(newPath);
 				loadList(newPath);
 			}
 		});
@@ -68,6 +69,21 @@ public class FileSystemActivity extends BaseListActivity {
 
 	public void killall() {
 		http.killall();
+	}
+
+	public void execute() {
+		String jsonString = http.execute(path);
+		try {
+			JSONObject response = new JSONObject(jsonString);
+			if (response.has("code")) {
+				Util.toast(this, response.getString("message"));
+				return;
+			}
+
+			// done
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

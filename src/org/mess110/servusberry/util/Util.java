@@ -1,6 +1,8 @@
 package org.mess110.servusberry.util;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Util {
 
@@ -27,5 +29,9 @@ public class Util {
 			s = s.substring(0, s.lastIndexOf("/"));
 		}
 		return s;
+	}
+
+	public static void toast(Context context, String text) {
+		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
 	}
 }
