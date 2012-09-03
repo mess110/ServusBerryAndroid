@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mess110.servusberry.base.BaseListActivity;
+import org.mess110.servusberry.model.ServusFile;
 import org.mess110.servusberry.util.HTTPClient;
 import org.mess110.servusberry.util.Util;
 
@@ -22,27 +23,38 @@ import android.widget.TextView;
 // specifically the JSON part
 public class FileSystemActivity extends BaseListActivity {
 	private HTTPClient http;
-	private String path = "/";
+	private ServusFile servusFile;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		http = new HTTPClient(getApplicationContext());
 
-		loadList(path);
+		loadList("/");
+	}
+
+	public void refresh() {
+		// loadList(path);
+	}
+
+	public void killall() {
+		http.killall();
 	}
 
 	private void loadList(String urlPath) {
+		servusFile = new ServusFile(urlPath);
+		Util.log(servusFile.getPath());
+
 		ArrayList<String> files = new ArrayList<String>();
 
-		String jsonString = http.files(urlPath);
+		String jsonString = http.files(servusFile.getPath());
 		try {
 			JSONObject response = new JSONObject(jsonString);
 			JSONArray fileNames = response.getJSONArray("files");
 			for (int i = 0; i < fileNames.length(); i++) {
 				files.add((String) fileNames.get(i));
 			}
-			path = response.getString("path");
+			// path = response.getString("path");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -57,22 +69,14 @@ public class FileSystemActivity extends BaseListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				String fileName = (String) (((TextView) view).getText());
-				String newPath = Util.pathJoin(path, fileName);
+				String newPath = Util.pathJoin(servusFile.getPath(), fileName);
 				loadList(newPath);
 			}
 		});
 	}
 
-	public void refresh() {
-		loadList(path);
-	}
-
-	public void killall() {
-		http.killall();
-	}
-
 	public void execute() {
-		String jsonString = http.execute(path);
+		String jsonString = http.execute(servusFile.getPath());
 		try {
 			JSONObject response = new JSONObject(jsonString);
 			if (response.has("code")) {
@@ -88,15 +92,12 @@ public class FileSystemActivity extends BaseListActivity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (!isRootPath() && (keyCode == KeyEvent.KEYCODE_BACK)) {
-			String prevDir = Util.prevDir(path);
+		if (keyCode == KeyEvent.KEYCODE_BACK && !servusFile.isRootPath()) {
+			String prevDir = Util.prevDir(servusFile.getPath());
 			loadList(prevDir);
 			return false;
+		} else {
+			return super.onKeyDown(keyCode, event);
 		}
-		return super.onKeyDown(keyCode, event);
-	}
-
-	public boolean isRootPath() {
-		return path.equals("/");
 	}
 }

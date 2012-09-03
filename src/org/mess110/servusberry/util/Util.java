@@ -29,7 +29,11 @@ public class Util {
 		if (s.indexOf("/") != -1) {
 			s = s.substring(0, s.lastIndexOf("/"));
 		}
-		return s;
+		if (s.equals("")) {
+			return "/";
+		} else {
+			return s;
+		}
 	}
 
 	public static void toast(Context context, String text) {
