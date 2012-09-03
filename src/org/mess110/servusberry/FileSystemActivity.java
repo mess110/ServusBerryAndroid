@@ -22,14 +22,14 @@ import android.widget.TextView;
 // specifically the JSON part
 public class FileSystemActivity extends BaseListActivity {
 	private HTTPClient http;
-	private String path;
+	private String path = "/";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		http = new HTTPClient(getApplicationContext());
 
-		loadList("/");
+		loadList(path);
 	}
 
 	private void loadList(String urlPath) {
@@ -56,8 +56,8 @@ public class FileSystemActivity extends BaseListActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				String s = (String) (((TextView) view).getText());
-				String newPath = Util.pathJoin(path, s);
+				String fileName = (String) (((TextView) view).getText());
+				String newPath = Util.pathJoin(path, fileName);
 				loadList(newPath);
 			}
 		});
