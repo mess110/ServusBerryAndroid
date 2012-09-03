@@ -43,7 +43,6 @@ public class FileSystemActivity extends BaseListActivity {
 
 	private void loadList(String urlPath) {
 		servusFile = new ServusFile(urlPath);
-		Util.log(servusFile.getPath());
 
 		ArrayList<String> files = new ArrayList<String>();
 
@@ -54,7 +53,6 @@ public class FileSystemActivity extends BaseListActivity {
 			for (int i = 0; i < fileNames.length(); i++) {
 				files.add((String) fileNames.get(i));
 			}
-			// path = response.getString("path");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -93,7 +91,7 @@ public class FileSystemActivity extends BaseListActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && !servusFile.isRootPath()) {
-			String prevDir = Util.prevDir(servusFile.getPath());
+			String prevDir = servusFile.getPrevDir();
 			loadList(prevDir);
 			return false;
 		} else {

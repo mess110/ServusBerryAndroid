@@ -1,5 +1,7 @@
 package org.mess110.servusberry.model;
 
+import org.mess110.servusberry.util.Util;
+
 public class ServusFile {
 
 	private String path;
@@ -14,6 +16,10 @@ public class ServusFile {
 
 	public String getPath() {
 		return path;
+	}
+
+	public String getPrevDir() {
+		return Util.prevDir(path);
 	}
 
 }
