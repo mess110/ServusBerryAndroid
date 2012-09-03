@@ -1,6 +1,7 @@
 package org.mess110.servusberry;
 
 import org.mess110.servusberry.util.Preferences;
+import org.mess110.servusberry.util.Util;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
 	private Button save;
@@ -30,8 +30,7 @@ public class SettingsActivity extends Activity {
 		save.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				pref.setUrl(url.getText().toString());
-				Toast.makeText(getApplicationContext(), "saved",
-						Toast.LENGTH_SHORT).show();
+				Util.toast(getApplicationContext(),"saved");
 			}
 		});
 	}

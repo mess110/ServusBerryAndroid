@@ -3,7 +3,6 @@ package org.mess110.servusberry;
 import org.mess110.servusberry.base.BaseActivity;
 import org.mess110.servusberry.util.HTTPClient;
 import org.mess110.servusberry.util.Preferences;
-import org.mess110.servusberry.util.Util;
 
 import android.os.Bundle;
 import android.widget.TextView;
