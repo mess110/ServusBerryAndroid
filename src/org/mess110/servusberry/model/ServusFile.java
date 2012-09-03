@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.mess110.servusberry.util.HTTPClient;
+import org.mess110.servusberry.util.API;
 import org.mess110.servusberry.util.Util;
 
 import android.content.Context;
@@ -14,13 +14,13 @@ public class ServusFile {
 
 	private String path;
 	private Context context;
-	private HTTPClient http;
+	private API http;
 	private ArrayList<String> files;
 
 	public ServusFile(String path, Context context) {
 		this.path = path;
 		this.context = context;
-		this.http = new HTTPClient(context);
+		this.http = new API(context);
 		this.files = new ArrayList<String>();
 	}
 

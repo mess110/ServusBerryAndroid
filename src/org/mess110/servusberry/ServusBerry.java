@@ -1,14 +1,14 @@
 package org.mess110.servusberry;
 
 import org.mess110.servusberry.base.BaseActivity;
-import org.mess110.servusberry.util.HTTPClient;
+import org.mess110.servusberry.util.API;
 import org.mess110.servusberry.util.Preferences;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class ServusBerry extends BaseActivity {
-	private HTTPClient http;
+	private API http;
 	private Preferences pref;
 	private TextView servusBerryServer;
 
@@ -21,7 +21,7 @@ public class ServusBerry extends BaseActivity {
 		servusBerryServer = (TextView) findViewById(R.id.textView1);
 		servusBerryServer.setText(pref.getUrl());
 
-		http = new HTTPClient(getApplicationContext());
+		http = new API(getApplicationContext());
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package org.mess110.servusberry;
 
 import org.mess110.servusberry.base.BaseListActivity;
 import org.mess110.servusberry.model.ServusFile;
-import org.mess110.servusberry.util.HTTPClient;
+import org.mess110.servusberry.util.API;
 import org.mess110.servusberry.util.ServusConst;
 import org.mess110.servusberry.util.Util;
 
@@ -16,13 +16,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class FileSystemActivity extends BaseListActivity {
-	private HTTPClient http;
+	private API http;
 	private ServusFile servusFile;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		http = new HTTPClient(getApplicationContext());
+		http = new API(getApplicationContext());
 		
 		loadList(ServusConst.ROOT_PATH);
 	}
