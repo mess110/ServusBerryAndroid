@@ -13,4 +13,5 @@ public class ServusConst {
 	public static final String PREF_KEY = "org.mess110.servusberry.prefs";
 
 	public static final String LOG_TAG = "ServusBerry";
+	public static final String ROOT_PATH = "/";
 }
