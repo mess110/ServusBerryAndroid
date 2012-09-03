@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class ServusBerry extends BaseActivity {
-	private API http;
+	private API api;
 	private Preferences pref;
 	private TextView servusBerryServer;
 
@@ -21,12 +21,12 @@ public class ServusBerry extends BaseActivity {
 		servusBerryServer = (TextView) findViewById(R.id.textView1);
 		servusBerryServer.setText(pref.getUrl());
 
-		http = new API(getApplicationContext());
+		api = new API(getApplicationContext());
 	}
 
 	@Override
 	public void refresh() {
-		String ip = http.ping();
+		String ip = api.ping();
 		if (!ip.equals("")) {
 			pref.setUrl(ip);
 			servusBerryServer.setText(ip);

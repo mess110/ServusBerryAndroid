@@ -16,13 +16,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class FileSystemActivity extends BaseListActivity {
-	private API http;
+	private API api;
 	private ServusFile servusFile;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		http = new API(getApplicationContext());
+		api = new API(getApplicationContext());
 		
 		loadList(ServusConst.ROOT_PATH);
 	}
@@ -32,7 +32,7 @@ public class FileSystemActivity extends BaseListActivity {
 	}
 
 	public void killall() {
-		http.killall();
+		api.killall();
 	}
 
 	public void execute() {

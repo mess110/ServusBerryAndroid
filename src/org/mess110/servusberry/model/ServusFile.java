@@ -14,13 +14,13 @@ public class ServusFile {
 
 	private String path;
 	private Context context;
-	private API http;
+	private API api;
 	private ArrayList<String> files;
 
 	public ServusFile(String path, Context context) {
 		this.path = path;
 		this.context = context;
-		this.http = new API(context);
+		this.api = new API(context);
 		this.files = new ArrayList<String>();
 	}
 
@@ -43,14 +43,14 @@ public class ServusFile {
 	public void look() {
 		files = new ArrayList<String>();
 
-		String jsonString = http.files(path);
+		String jsonString = api.files(path);
 		try {
 			JSONObject response = new JSONObject(jsonString);
 			JSONArray fileNames = response.getJSONArray("files");
 			for (int i = 0; i < fileNames.length(); i++) {
 				files.add((String) fileNames.get(i));
 			}
-			
+
 			// get some more info about the file
 			// like extension
 			// or is-folder
@@ -60,7 +60,7 @@ public class ServusFile {
 	}
 
 	public void execute() {
-		String jsonString = http.execute(path);
+		String jsonString = api.execute(path);
 		try {
 			JSONObject response = new JSONObject(jsonString);
 			if (response.has("code")) {
