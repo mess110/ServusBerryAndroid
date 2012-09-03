@@ -88,16 +88,15 @@ public class FileSystemActivity extends BaseListActivity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-
-			if (!path.equals("/")) {
-				String prevDir = Util.prevDir(path);
-				loadList(prevDir);
-				return false;
-			}
-			return super.onKeyDown(keyCode, event);
-		} else {
-			return super.onKeyDown(keyCode, event);
+		if (!isRootPath() && (keyCode == KeyEvent.KEYCODE_BACK)) {
+			String prevDir = Util.prevDir(path);
+			loadList(prevDir);
+			return false;
 		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	public boolean isRootPath() {
+		return path.equals("/");
 	}
 }
