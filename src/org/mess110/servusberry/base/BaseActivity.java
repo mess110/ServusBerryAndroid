@@ -13,8 +13,10 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(Menu.NONE, ServusConst.ID_MENU_REFRESH, Menu.NONE,
-				"detect server");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_PING, Menu.NONE,
+				"ping");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_DETECT_SERVER, Menu.NONE,
+				"detect_server");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_SETTINGS, Menu.NONE, "settings");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_FILE_SYSTEM, Menu.NONE,
 				"file system");
@@ -30,8 +32,11 @@ public abstract class BaseActivity extends Activity {
 		case ServusConst.ID_MENU_EXIT:
 			this.finish();
 			break;
-		case ServusConst.ID_MENU_REFRESH:
-			refresh();
+		case ServusConst.ID_MENU_DETECT_SERVER:
+			detectServer();
+			break;
+		case ServusConst.ID_MENU_PING:
+			ping();
 			break;
 		case ServusConst.ID_MENU_SETTINGS:
 			startActivity(SettingsActivity.class);
@@ -48,7 +53,9 @@ public abstract class BaseActivity extends Activity {
 		return false;
 	}
 
-	public abstract void refresh();
+	public abstract void detectServer();
+
+	public abstract void ping();
 
 	public abstract void killall();
 

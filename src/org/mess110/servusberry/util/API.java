@@ -1,9 +1,11 @@
 package org.mess110.servusberry.util;
 
+import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONObject;
 
 import android.content.Context;
 
+// This can be dried up even further
 public class API {
 
 	private Preferences pref;
@@ -34,10 +36,9 @@ public class API {
 		return result;
 	}
 
-	// TODO fix this
-	public String ping() {
+	public String findServusBerryServer() {
 		String result = "";
-		for (int i = 0; i <= 255; i++) {
+		for (int i = 1; i <= 255; i++) {
 			String url = "http://192.168.1." + String.valueOf(i) + ":5000/";
 			try {
 				String jsonString = Util.executeHttpGet(url, true);
@@ -46,9 +47,22 @@ public class API {
 					result = url;
 					break;
 				}
+			} catch (ConnectTimeoutException e) {
+				// e.printStackTrace();
 			} catch (Exception e) {
-				e.printStackTrace();
+				// e.printStackTrace();
 			}
+		}
+		return result;
+	}
+
+	// url + '/ping' is the same as url
+	public String ping(String url) {
+		String result = "";
+		try {
+			result = Util.executeHttpGet(url);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 	}

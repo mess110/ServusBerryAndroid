@@ -1,8 +1,10 @@
 package org.mess110.servusberry;
 
 import org.mess110.servusberry.base.BaseActivity;
+import org.mess110.servusberry.model.ServerDetect;
 import org.mess110.servusberry.util.API;
 import org.mess110.servusberry.util.Preferences;
+import org.mess110.servusberry.util.Util;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -25,11 +27,19 @@ public class ServusBerry extends BaseActivity {
 	}
 
 	@Override
-	public void refresh() {
-		String ip = api.ping();
-		if (!ip.equals("")) {
-			pref.setUrl(ip);
-			servusBerryServer.setText(ip);
+	public void detectServer() {
+
+	}
+
+	@Override
+	public void ping() {
+		servusBerryServer.setText(pref.getUrl());
+		String result = api.ping(pref.getUrl());
+		Util.log(result);
+		if (ServerDetect.isServer(result)) {
+			Util.toast(getApplicationContext(), "connected");
+		} else {
+			Util.toast(getApplicationContext(), "not connected");
 		}
 	}
 
