@@ -13,9 +13,12 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(Menu.NONE, ServusConst.ID_MENU_REFRESH, Menu.NONE, "detect server");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_REFRESH, Menu.NONE,
+				"detect server");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_SETTINGS, Menu.NONE, "settings");
-		menu.add(Menu.NONE, ServusConst.ID_MENU_FILE_SYSTEM, Menu.NONE, "file system");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_FILE_SYSTEM, Menu.NONE,
+				"file system");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_KILL_ALL, Menu.NONE, "killall");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_EXIT, Menu.NONE, "exit");
 
 		return true;
@@ -36,6 +39,9 @@ public abstract class BaseActivity extends Activity {
 		case ServusConst.ID_MENU_FILE_SYSTEM:
 			startActivity(FileSystemActivity.class);
 			break;
+		case ServusConst.ID_MENU_KILL_ALL:
+			killall();
+			break;
 		default:
 			break;
 		}
@@ -43,6 +49,8 @@ public abstract class BaseActivity extends Activity {
 	}
 
 	public abstract void refresh();
+
+	public abstract void killall();
 
 	public void startActivity(Class<?> klass) {
 		Intent myIntent = new Intent(getBaseContext(), klass);

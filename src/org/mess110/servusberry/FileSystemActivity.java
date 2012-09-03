@@ -2,7 +2,6 @@ package org.mess110.servusberry;
 
 import org.mess110.servusberry.base.BaseListActivity;
 import org.mess110.servusberry.model.ServusFile;
-import org.mess110.servusberry.util.API;
 import org.mess110.servusberry.util.ServusConst;
 import org.mess110.servusberry.util.Util;
 
@@ -16,23 +15,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class FileSystemActivity extends BaseListActivity {
-	private API api;
 	private ServusFile servusFile;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		api = new API(getApplicationContext());
-		
 		loadList(ServusConst.ROOT_PATH);
 	}
 
 	public void refresh() {
 		loadList(servusFile.getPath());
-	}
-
-	public void killall() {
-		api.killall();
 	}
 
 	public void execute() {
@@ -49,7 +41,7 @@ public class FileSystemActivity extends BaseListActivity {
 			return super.onKeyDown(keyCode, event);
 		}
 	}
-	
+
 	private void loadList(String urlPath) {
 		servusFile = new ServusFile(urlPath, getApplicationContext());
 		servusFile.look();

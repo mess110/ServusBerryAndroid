@@ -12,14 +12,12 @@ public abstract class BaseListActivity extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, ServusConst.ID_MENU_PLAY, Menu.NONE, "play");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_REFRESH, Menu.NONE, "refresh");
-		menu.add(Menu.NONE, ServusConst.ID_MENU_KILL_ALL, Menu.NONE, "killall");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_EXIT, Menu.NONE, "exit");
 
 		return true;
 	}
 
 	public abstract void refresh();
-	public abstract void killall();
 	public abstract void execute();
 
 	@Override
@@ -30,9 +28,6 @@ public abstract class BaseListActivity extends ListActivity {
 			break;
 		case ServusConst.ID_MENU_REFRESH:
 			refresh();
-			break;
-		case ServusConst.ID_MENU_KILL_ALL:
-			killall();
 			break;
 		case ServusConst.ID_MENU_PLAY:
 			execute();

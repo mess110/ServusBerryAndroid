@@ -32,4 +32,9 @@ public class ServusBerry extends BaseActivity {
 			servusBerryServer.setText(ip);
 		}
 	}
+
+	@Override
+	public void killall() {
+		api.killall();
+	}
 }
