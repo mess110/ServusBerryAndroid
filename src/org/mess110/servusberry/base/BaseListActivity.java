@@ -1,10 +1,19 @@
 package org.mess110.servusberry.base;
 
+import java.util.ArrayList;
+
+import org.mess110.servusberry.R;
 import org.mess110.servusberry.util.ServusConst;
 
 import android.app.ListActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public abstract class BaseListActivity extends ListActivity {
 
@@ -18,7 +27,26 @@ public abstract class BaseListActivity extends ListActivity {
 	}
 
 	public abstract void refresh();
+
 	public abstract void execute();
+
+	public abstract void itemClick(String name);
+
+	public void updateList(ArrayList<String> listItems) {
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.file_system,
+				listItems));
+
+		ListView listView = getListView();
+		listView.setTextFilterEnabled(true);
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				String fileName = (String) (((TextView) view).getText());
+				itemClick(fileName);
+			}
+		});
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

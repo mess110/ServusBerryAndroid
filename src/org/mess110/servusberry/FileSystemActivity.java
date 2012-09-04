@@ -7,12 +7,6 @@ import org.mess110.servusberry.util.Util;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class FileSystemActivity extends BaseListActivity {
 	private ServusFile servusFile;
@@ -30,6 +24,18 @@ public class FileSystemActivity extends BaseListActivity {
 	public void execute() {
 		servusFile.execute();
 	}
+	
+	private void loadList(String urlPath) {
+		servusFile = new ServusFile(urlPath, getApplicationContext());
+		servusFile.look();
+		updateList(servusFile.getFiles());
+	}
+
+	@Override
+	public void itemClick(String name) {
+		String newPath = Util.pathJoin(servusFile.getPath(), name);
+		loadList(newPath);
+	}
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -40,28 +46,5 @@ public class FileSystemActivity extends BaseListActivity {
 		} else {
 			return super.onKeyDown(keyCode, event);
 		}
-	}
-
-	private void loadList(String urlPath) {
-		servusFile = new ServusFile(urlPath, getApplicationContext());
-		servusFile.look();
-		updateFileList();
-	}
-
-	private void updateFileList() {
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.file_system,
-				servusFile.getFiles()));
-
-		ListView listView = getListView();
-		listView.setTextFilterEnabled(true);
-
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				String fileName = (String) (((TextView) view).getText());
-				String newPath = Util.pathJoin(servusFile.getPath(), fileName);
-				loadList(newPath);
-			}
-		});
 	}
 }
