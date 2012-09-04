@@ -14,44 +14,28 @@ public class API {
 	public String files(String path) {
 		String result = "";
 		String url = pref.getUrl() + "/files" + path;
-		try {
-			result = Util.executeHttpGet(url);
-		} catch (Exception e) {
-
-		}
+		result = Util.executeHttpGet(url);
 		return result;
 	}
 
 	public String killall() {
 		String result = "";
 		String url = pref.getUrl() + "/killall";
-		try {
-			result = Util.executeHttpPost(url);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		result = Util.executeHttpPost(url);
 		return result;
 	}
 
 	// url + '/ping' is the same as url
 	public String ping(String url) {
 		String result = "";
-		try {
-			result = Util.executeHttpGet(url);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		result = Util.executeHttpGet(url);
 		return result;
 	}
 
 	public String execute(String path) {
 		String result = "";
 		String url = pref.getUrl() + "/files" + path;
-		try {
-			result = Util.executeHttpPost(url);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		result = Util.executeHttpPost(url);
 		return result;
 	}
 }

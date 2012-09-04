@@ -54,7 +54,7 @@ public class Util {
 		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
 	}
 
-	public static String executeHttpPost(String url) throws Exception {
+	public static String executeHttpPost(String url) {
 		BufferedReader in = null;
 		try {
 			HttpClient client = new DefaultHttpClient();
@@ -71,6 +71,8 @@ public class Util {
 			}
 			in.close();
 			return sb.toString();
+		} catch (Exception e) {
+			return "{ 'code': 5, 'message': '" + e.getMessage() + "'}";
 		} finally {
 			if (in != null) {
 				try {
@@ -82,17 +84,16 @@ public class Util {
 		}
 	}
 
-	public static String executeHttpGet(String url) throws Exception {
+	public static String executeHttpGet(String url) {
 		return executeHttpGet(url, false);
 	}
 
-	public static String executeHttpGet(String url, boolean timeout)
-			throws Exception {
+	public static String executeHttpGet(String url, boolean useTimeout) {
 		BufferedReader in = null;
 		try {
 			DefaultHttpClient client = new DefaultHttpClient();
 
-			if (timeout == true) {
+			if (useTimeout == true) {
 				HttpParams httpParameters = new BasicHttpParams();
 				HttpConnectionParams.setConnectionTimeout(httpParameters, 10);
 				client.setParams(httpParameters);
@@ -111,6 +112,8 @@ public class Util {
 			}
 			in.close();
 			return sb.toString();
+		} catch (Exception e) {
+			return "{ 'code': 5, 'message': '" + e.getMessage() + "'}";
 		} finally {
 			if (in != null) {
 				try {
