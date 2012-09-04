@@ -1,6 +1,7 @@
 package org.mess110.servusberry.base;
 
 import org.mess110.servusberry.FileSystemActivity;
+import org.mess110.servusberry.RadioActivity;
 import org.mess110.servusberry.SettingsActivity;
 import org.mess110.servusberry.util.ServusConst;
 
@@ -13,11 +14,11 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(Menu.NONE, ServusConst.ID_MENU_PING, Menu.NONE,
-				"ping");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_PING, Menu.NONE, "ping");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_DETECT_SERVER, Menu.NONE,
 				"detect_server");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_SETTINGS, Menu.NONE, "settings");
+		menu.add(Menu.NONE, ServusConst.ID_MENU_RADIO, Menu.NONE, "radio");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_FILE_SYSTEM, Menu.NONE,
 				"file system");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_KILL_ALL, Menu.NONE, "killall");
@@ -40,6 +41,9 @@ public abstract class BaseActivity extends Activity {
 			break;
 		case ServusConst.ID_MENU_SETTINGS:
 			startActivity(SettingsActivity.class);
+			break;
+		case ServusConst.ID_MENU_RADIO:
+			startActivity(RadioActivity.class);
 			break;
 		case ServusConst.ID_MENU_FILE_SYSTEM:
 			startActivity(FileSystemActivity.class);

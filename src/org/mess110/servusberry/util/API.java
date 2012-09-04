@@ -18,6 +18,13 @@ public class API {
 		return result;
 	}
 
+	public String radioStations() {
+		String result = "";
+		String url = pref.getUrl() + "/radio";
+		result = Util.executeHttpGet(url);
+		return result;
+	}
+
 	public String killall() {
 		String result = "";
 		String url = pref.getUrl() + "/killall";
@@ -35,6 +42,13 @@ public class API {
 	public String execute(String path) {
 		String result = "";
 		String url = pref.getUrl() + "/files" + path;
+		result = Util.executeHttpPost(url);
+		return result;
+	}
+
+	public String playRadioStation(String name) {
+		String result = "";
+		String url = pref.getUrl() + "radio/?name=" + name;
 		result = Util.executeHttpPost(url);
 		return result;
 	}
