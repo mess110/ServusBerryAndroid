@@ -40,7 +40,7 @@ public class ServusFile {
 		return files;
 	}
 
-	public void look() {
+	public ArrayList<String> look() {
 		files = new ArrayList<String>();
 
 		String jsonString = api.files(path);
@@ -57,6 +57,7 @@ public class ServusFile {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		return files;
 	}
 
 	public void execute() {

@@ -24,11 +24,10 @@ public class FileSystemActivity extends BaseListActivity {
 	public void execute() {
 		servusFile.execute();
 	}
-	
+
 	private void loadList(String urlPath) {
 		servusFile = new ServusFile(urlPath, getApplicationContext());
-		servusFile.look();
-		updateList(servusFile.getFiles());
+		updateList(servusFile.look());
 	}
 
 	@Override
