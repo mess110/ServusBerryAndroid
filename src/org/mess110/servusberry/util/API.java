@@ -13,21 +13,21 @@ public class API {
 
 	public String files(String path) {
 		String result = "";
-		String url = pref.getUrl() + "/files" + path;
+		String url = pref.getUrl() + "files" + path;
 		result = Util.executeHttpGet(url);
 		return result;
 	}
 
 	public String radioStations() {
 		String result = "";
-		String url = pref.getUrl() + "/radio";
+		String url = pref.getUrl() + "radio";
 		result = Util.executeHttpGet(url);
 		return result;
 	}
 
 	public String killall() {
 		String result = "";
-		String url = pref.getUrl() + "/killall";
+		String url = pref.getUrl() + "killall";
 		result = Util.executeHttpPost(url);
 		return result;
 	}
@@ -41,7 +41,7 @@ public class API {
 
 	public String execute(String path) {
 		String result = "";
-		String url = pref.getUrl() + "/files" + path;
+		String url = pref.getUrl() + "files" + path;
 		result = Util.executeHttpPost(url);
 		return result;
 	}
@@ -51,5 +51,10 @@ public class API {
 		String url = pref.getUrl() + "radio/?name=" + name;
 		result = Util.executeHttpPost(url);
 		return result;
+	}
+
+	public void update() {
+		String url = pref.getUrl() + "update";
+		Util.executeHttpPost(url);
 	}
 }

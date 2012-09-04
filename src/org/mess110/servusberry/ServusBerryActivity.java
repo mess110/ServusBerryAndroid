@@ -49,4 +49,9 @@ public class ServusBerryActivity extends BaseActivity {
 	public void killall() {
 		servusBerry.killall();
 	}
+
+	@Override
+	public void update() {
+		servusBerry.update();
+	}
 }

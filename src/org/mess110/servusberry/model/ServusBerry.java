@@ -56,4 +56,8 @@ public class ServusBerry {
 		return result;
 	}
 
+	public void update() {
+		api.update();
+	}
+
 }

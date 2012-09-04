@@ -10,6 +10,7 @@ public class ServusConst {
 	public static final int ID_MENU_DETECT_SERVER = 6;
 	public static final int ID_MENU_PING = 7;
 	public static final int ID_MENU_RADIO = 8;
+	public static final int ID_MENU_UPDATE = 9;
 
 	public static final String URL_KEY = "url";
 	public static final String DEFAULT_URL = "http://192.168.1.100:5000";
