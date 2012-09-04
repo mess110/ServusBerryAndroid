@@ -2,6 +2,7 @@ package org.mess110.servusberry;
 
 import org.mess110.servusberry.base.BaseActivity;
 import org.mess110.servusberry.model.ServusBerry;
+import org.mess110.servusberry.model.WifiIP;
 import org.mess110.servusberry.util.Preferences;
 import org.mess110.servusberry.util.Util;
 
@@ -27,14 +28,13 @@ public class ServusBerryActivity extends BaseActivity {
 
 	@Override
 	public void detectServer() {
-		// TODO create object for wifi
-		String ipAddr = Util.getWifiIpAddr(getApplicationContext());
-		if (ipAddr.equals("0.0.0.0")) {
+		WifiIP wifiIp = new WifiIP(getApplicationContext());
+		if (!wifiIp.isAvailable()) {
 			Util.toast(getApplicationContext(), "Not connected to wifi");
 			return;
 		}
 
-		String ipMask = ipAddr.substring(0, ipAddr.lastIndexOf('.') + 1);
+		String ipMask = wifiIp.getMask();
 		String url = servusBerry.findServerIpAddr(ipMask);
 		pref.setUrl(url);
 		servusBerryServer.setText(url);
