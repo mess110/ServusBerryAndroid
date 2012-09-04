@@ -14,7 +14,10 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -123,5 +126,17 @@ public class Util {
 				}
 			}
 		}
+	}
+
+	public static String getWifiIpAddr(Context ctx) {
+		WifiManager wifiManager = (WifiManager) ctx
+				.getSystemService(Activity.WIFI_SERVICE);
+		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+		int ip = wifiInfo.getIpAddress();
+
+		String ipString = String.format("%d.%d.%d.%d", (ip & 0xff),
+				(ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
+
+		return ipString.toString();
 	}
 }
