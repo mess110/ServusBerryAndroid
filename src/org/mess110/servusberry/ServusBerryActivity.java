@@ -14,7 +14,7 @@ import android.widget.TextView;
 // TODO: fix this liek FileSystemActivity
 // evaluate if there should be an API object here, since API object
 // only does a HTTP request
-public class ServusBerry extends BaseActivity {
+public class ServusBerryActivity extends BaseActivity {
 	private API api;
 	private Preferences pref;
 	private TextView servusBerryServer;
@@ -44,17 +44,13 @@ public class ServusBerry extends BaseActivity {
 
 	@Override
 	public void detectServer() {
+		String ipAddr = getIpAddr();
 		for (int i = 1; i <= 255; i++) {
-
 			String url = "http://192.168.1." + String.valueOf(i) + ":5000/";
-			try {
-				String jsonString = Util.executeHttpGet(url, true);
-				if (ServerDetect.isServer(jsonString)) {
-					pref.setUrl(url);
-					break;
-				}
-			} catch (Exception e) {
-				// e.printStackTrace();
+			String jsonString = Util.executeHttpGet(url, true);
+			if (ServerDetect.isServer(jsonString)) {
+				pref.setUrl(url);
+				break;
 			}
 		}
 		servusBerryServer.setText(pref.getUrl());
