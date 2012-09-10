@@ -35,7 +35,7 @@ public class API {
 	// url + '/ping' is the same as url
 	public String ping(String url) {
 		String result = "";
-		result = Util.executeHttpGet(url);
+		result = Util.executeHttpGet(url, true);
 		return result;
 	}
 

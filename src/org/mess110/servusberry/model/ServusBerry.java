@@ -17,7 +17,7 @@ public class ServusBerry {
 		this.api = new API(context);
 	}
 
-	public boolean isServer(String jsonString) {
+	private boolean isServer(String jsonString) {
 		boolean result = false;
 		try {
 			JSONObject response = new JSONObject(jsonString);
@@ -34,13 +34,15 @@ public class ServusBerry {
 		api.killall();
 	}
 
-	public void ping(String url) {
-		String result = api.ping(url);
-		if (isServer(result)) {
+	public boolean ping(String url) {
+		String jsonString = api.ping(url);
+		boolean result = isServer(jsonString);
+		if (result) {
 			Util.toast(context, "connected");
 		} else {
 			Util.toast(context, "not connected");
 		}
+		return result;
 	}
 
 	public String findServerIpAddr(String ipMask) {
