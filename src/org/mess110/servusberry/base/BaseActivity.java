@@ -52,12 +52,20 @@ public abstract class BaseActivity extends Activity {
 		return false;
 	}
 
+	public abstract void connect();
+
 	public abstract void killall();
-	
+
 	public abstract void update();
+	
+	public abstract boolean isConnected();
 
 	public void startActivity(Class<?> klass) {
-		Intent myIntent = new Intent(getBaseContext(), klass);
-		startActivity(myIntent);
+		if (isConnected()) {
+			Intent myIntent = new Intent(getBaseContext(), klass);
+			startActivity(myIntent);
+		} else {
+			connect();
+		}
 	}
 }

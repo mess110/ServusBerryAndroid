@@ -23,7 +23,7 @@ public class ServusBerryActivity extends BaseActivity {
 		pref = new Preferences(this);
 
 		servusBerry = new ServusBerry(getApplicationContext());
-		
+
 		pd = new ProgressDialog(this);
 		pd.setMessage("Detecting server..");
 
@@ -32,7 +32,8 @@ public class ServusBerryActivity extends BaseActivity {
 		connect();
 	}
 
-	private void connect() {
+	@Override
+	public void connect() {
 		pd.show();
 
 		if (servusBerry.ping(pref.getUrl())) {
@@ -69,5 +70,10 @@ public class ServusBerryActivity extends BaseActivity {
 	@Override
 	public void update() {
 		servusBerry.update();
+	}
+
+	@Override
+	public boolean isConnected() {
+		return servusBerry.isConnected();
 	}
 }
