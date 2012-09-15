@@ -4,13 +4,16 @@ import org.mess110.servusberry.base.BaseActivity;
 import org.mess110.servusberry.model.ServusBerry;
 import org.mess110.servusberry.model.WifiIP;
 import org.mess110.servusberry.util.Preferences;
-import org.mess110.servusberry.util.Util;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 
 public class ServusBerryActivity extends BaseActivity {
 	private Preferences pref;
 	private ServusBerry servusBerry;
+	private ProgressDialog pd;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -21,18 +24,32 @@ public class ServusBerryActivity extends BaseActivity {
 
 		servusBerry = new ServusBerry(getApplicationContext());
 
-		connect(this);
+		connect();
 	}
 
-	private void connect(ServusBerryActivity servusBerryActivity) {
+	private void connect() {
+		pd = ProgressDialog.show(this, "Working..", "Calculating Pi");
+
 		if (servusBerry.ping(pref.getUrl())) {
 			servusBerry.setConnected(true);
+			handler.sendEmptyMessage(0);
 		} else {
-			detectServer();
+			new Thread(new Runnable() {
+				public void run() {
+					detectServer();
+					handler.sendEmptyMessage(0);
+				}
+			}).start();
 		}
-		Util.toast(getApplicationContext(),
-				String.valueOf(servusBerry.isConnected()));
 	}
+
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			pd.dismiss();
+
+		}
+	};
 
 	public void detectServer() {
 		WifiIP wifiIp = new WifiIP(getApplicationContext());
