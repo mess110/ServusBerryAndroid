@@ -2,7 +2,6 @@ package org.mess110.servusberry;
 
 import org.mess110.servusberry.base.BaseListActivity;
 import org.mess110.servusberry.model.ServusFile;
-import org.mess110.servusberry.util.ServusConst;
 import org.mess110.servusberry.util.Util;
 
 import android.os.Bundle;
@@ -14,7 +13,7 @@ public class FileSystemActivity extends BaseListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		loadList(ServusConst.ROOT_PATH);
+		loadList(pref.getPath());
 	}
 
 	public void refresh() {
@@ -26,6 +25,7 @@ public class FileSystemActivity extends BaseListActivity {
 	}
 
 	private void loadList(String urlPath) {
+		pref.setPath(urlPath);
 		servusFile = new ServusFile(urlPath, getApplicationContext());
 		updateList(servusFile.look());
 	}

@@ -11,6 +11,17 @@ public class Preferences {
 		preferences = context.getSharedPreferences(ServusConst.PREF_KEY, 0);
 	}
 
+	public void setPath(String path) {
+		Editor editor = preferences.edit();
+		editor.putString(ServusConst.PATH_KEY, path);
+		editor.commit();
+	}
+
+	public String getPath() {
+		return preferences.getString(ServusConst.PATH_KEY,
+				ServusConst.ROOT_PATH);
+	}
+
 	public void setUrl(String url) {
 		Editor editor = preferences.edit();
 		editor.putString(ServusConst.URL_KEY, url);

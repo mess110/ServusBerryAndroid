@@ -3,9 +3,11 @@ package org.mess110.servusberry.base;
 import java.util.ArrayList;
 
 import org.mess110.servusberry.R;
+import org.mess110.servusberry.util.Preferences;
 import org.mess110.servusberry.util.ServusConst;
 
 import android.app.ListActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +19,14 @@ import android.widget.TextView;
 
 public abstract class BaseListActivity extends ListActivity {
 
+	protected Preferences pref;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		pref = new Preferences(this);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, ServusConst.ID_MENU_PLAY, Menu.NONE, "play");

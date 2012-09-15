@@ -4,7 +4,6 @@ import org.mess110.servusberry.base.BaseActivity;
 import org.mess110.servusberry.model.ServusBerry;
 import org.mess110.servusberry.model.WifiIP;
 import org.mess110.servusberry.util.CustomHandler;
-import org.mess110.servusberry.util.Preferences;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class ServusBerryActivity extends BaseActivity {
-	private Preferences pref;
 	private ServusBerry servusBerry;
 	private ProgressDialog pd;
 	private CustomHandler handler;
@@ -22,8 +20,6 @@ public class ServusBerryActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		pref = new Preferences(this);
 
 		servusBerry = new ServusBerry(getApplicationContext());
 

@@ -3,14 +3,24 @@ package org.mess110.servusberry.base;
 import org.mess110.servusberry.FileSystemActivity;
 import org.mess110.servusberry.RadioActivity;
 import org.mess110.servusberry.SettingsActivity;
+import org.mess110.servusberry.util.Preferences;
 import org.mess110.servusberry.util.ServusConst;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public abstract class BaseActivity extends Activity {
+
+	protected Preferences pref;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		pref = new Preferences(this);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,7 +58,7 @@ public abstract class BaseActivity extends Activity {
 	public abstract void connect();
 
 	public abstract void update();
-	
+
 	public abstract boolean isConnected();
 
 	public void startActivity(Class<?> klass) {
