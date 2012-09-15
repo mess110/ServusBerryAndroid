@@ -7,11 +7,9 @@ import org.mess110.servusberry.util.Preferences;
 import org.mess110.servusberry.util.Util;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 public class ServusBerryActivity extends BaseActivity {
 	private Preferences pref;
-	private TextView servusBerryServer;
 	private ServusBerry servusBerry;
 
 	@Override
@@ -20,8 +18,6 @@ public class ServusBerryActivity extends BaseActivity {
 		setContentView(R.layout.main);
 
 		pref = new Preferences(this);
-		servusBerryServer = (TextView) findViewById(R.id.textView1);
-		servusBerryServer.setText(pref.getUrl());
 
 		servusBerry = new ServusBerry(getApplicationContext());
 	}
@@ -37,7 +33,6 @@ public class ServusBerryActivity extends BaseActivity {
 		String ipMask = wifiIp.getMask();
 		String url = servusBerry.findServerIpAddr(ipMask);
 		pref.setUrl(url);
-		servusBerryServer.setText(url);
 	}
 
 	@Override

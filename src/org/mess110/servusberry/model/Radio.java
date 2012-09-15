@@ -22,6 +22,7 @@ public class Radio {
 		this.context = context;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<String> getStations() {
 		stations = new ArrayList<String>();
 
