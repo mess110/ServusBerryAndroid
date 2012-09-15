@@ -9,12 +9,10 @@ import android.content.Context;
 
 public class ServusBerry {
 
-	private Context context;
 	private API api;
 	private boolean connected;
 
 	public ServusBerry(Context context) {
-		this.context = context;
 		this.api = new API(context);
 		this.connected = false;
 	}
