@@ -61,6 +61,7 @@ public class ServusFile {
 	}
 
 	public void execute() {
+		api.killall();
 		String jsonString = api.execute(path);
 		try {
 			JSONObject response = new JSONObject(jsonString);

@@ -41,6 +41,7 @@ public class Radio {
 	}
 
 	public void play(String name) {
+		api.killall();
 		String jsonString = api.playRadioStation(name);
 		try {
 			JSONObject response = new JSONObject(jsonString);
