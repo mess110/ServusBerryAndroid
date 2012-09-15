@@ -15,10 +15,6 @@ public abstract class BaseActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, ServusConst.ID_MENU_SETTINGS, Menu.NONE, "settings");
-		menu.add(Menu.NONE, ServusConst.ID_MENU_RADIO, Menu.NONE, "radio");
-		menu.add(Menu.NONE, ServusConst.ID_MENU_FILE_SYSTEM, Menu.NONE,
-				"file system");
-		menu.add(Menu.NONE, ServusConst.ID_MENU_KILL_ALL, Menu.NONE, "killall");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_UPDATE, Menu.NONE, "update");
 		menu.add(Menu.NONE, ServusConst.ID_MENU_EXIT, Menu.NONE, "exit");
 
@@ -40,9 +36,6 @@ public abstract class BaseActivity extends Activity {
 		case ServusConst.ID_MENU_FILE_SYSTEM:
 			startActivity(FileSystemActivity.class);
 			break;
-		case ServusConst.ID_MENU_KILL_ALL:
-			killall();
-			break;
 		case ServusConst.ID_MENU_UPDATE:
 			update();
 			break;
@@ -53,8 +46,6 @@ public abstract class BaseActivity extends Activity {
 	}
 
 	public abstract void connect();
-
-	public abstract void killall();
 
 	public abstract void update();
 	

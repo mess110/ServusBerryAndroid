@@ -8,6 +8,9 @@ import org.mess110.servusberry.util.Preferences;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class ServusBerryActivity extends BaseActivity {
 	private Preferences pref;
@@ -26,6 +29,33 @@ public class ServusBerryActivity extends BaseActivity {
 
 		pd = new ProgressDialog(this);
 		pd.setMessage("Detecting server..");
+
+		Button killall = (Button) findViewById(R.id.button1);
+		killall.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				servusBerry.killall();
+			}
+		});
+
+		Button fileSystem = (Button) findViewById(R.id.button2);
+		fileSystem.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivity(FileSystemActivity.class);
+			}
+		});
+
+		Button radio = (Button) findViewById(R.id.button3);
+		radio.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivity(RadioActivity.class);
+			}
+		});
 
 		handler = new CustomHandler(pd);
 
@@ -60,11 +90,6 @@ public class ServusBerryActivity extends BaseActivity {
 		String url = servusBerry.findServerIpAddr(ipMask);
 		pref.setUrl(url);
 		servusBerry.setConnected(true);
-	}
-
-	@Override
-	public void killall() {
-		servusBerry.killall();
 	}
 
 	@Override

@@ -19,7 +19,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Detect Server" />
+        android:text="Killall" />
 
     <Button
         android:id="@+id/button2"
