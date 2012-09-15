@@ -11,10 +11,12 @@ public class ServusBerry {
 
 	private Context context;
 	private API api;
+	private boolean connected;
 
 	public ServusBerry(Context context) {
 		this.context = context;
 		this.api = new API(context);
+		this.connected = false;
 	}
 
 	private boolean isServer(String jsonString) {
@@ -36,13 +38,7 @@ public class ServusBerry {
 
 	public boolean ping(String url) {
 		String jsonString = api.ping(url);
-		boolean result = isServer(jsonString);
-		if (result) {
-			Util.toast(context, "connected");
-		} else {
-			Util.toast(context, "not connected");
-		}
-		return result;
+		return isServer(jsonString);
 	}
 
 	public String findServerIpAddr(String ipMask) {
@@ -62,4 +58,11 @@ public class ServusBerry {
 		api.update();
 	}
 
+	public boolean isConnected() {
+		return connected;
+	}
+
+	public void setConnected(boolean value) {
+		this.connected = value;
+	}
 }

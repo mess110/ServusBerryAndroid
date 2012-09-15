@@ -20,24 +20,31 @@ public class ServusBerryActivity extends BaseActivity {
 		pref = new Preferences(this);
 
 		servusBerry = new ServusBerry(getApplicationContext());
+
+		connect(this);
 	}
 
-	@Override
+	private void connect(ServusBerryActivity servusBerryActivity) {
+		if (servusBerry.ping(pref.getUrl())) {
+			servusBerry.setConnected(true);
+		} else {
+			detectServer();
+		}
+		Util.toast(getApplicationContext(),
+				String.valueOf(servusBerry.isConnected()));
+	}
+
 	public void detectServer() {
 		WifiIP wifiIp = new WifiIP(getApplicationContext());
 		if (!wifiIp.isAvailable()) {
-			Util.toast(getApplicationContext(), "Not connected to wifi");
+			servusBerry.setConnected(false);
 			return;
 		}
 
 		String ipMask = wifiIp.getMask();
 		String url = servusBerry.findServerIpAddr(ipMask);
 		pref.setUrl(url);
-	}
-
-	@Override
-	public void ping() {
-		servusBerry.ping(pref.getUrl());
+		servusBerry.setConnected(true);
 	}
 
 	@Override
