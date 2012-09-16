@@ -63,4 +63,16 @@ public class ServusBerry {
 	public void setConnected(boolean value) {
 		this.connected = value;
 	}
+
+	public void mute() {
+		api.mute();
+	}
+
+	public void volDown() {
+		api.volumeDown("1000");
+	}
+
+	public void volUp() {
+		api.volumeUp("1000");
+	}
 }

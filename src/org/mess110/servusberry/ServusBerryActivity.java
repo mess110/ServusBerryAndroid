@@ -31,7 +31,25 @@ public class ServusBerryActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				servusBerry.killall();
+				servusBerry.mute();
+			}
+		});
+
+		Button volDown = (Button) findViewById(R.id.button4);
+		volDown.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				servusBerry.volDown();
+			}
+		});
+
+		Button volUp = (Button) findViewById(R.id.button5);
+		volUp.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				servusBerry.volUp();
 			}
 		});
 

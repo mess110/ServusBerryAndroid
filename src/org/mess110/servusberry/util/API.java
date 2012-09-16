@@ -57,4 +57,26 @@ public class API {
 		String url = pref.getUrl() + "update";
 		Util.executeHttpPost(url);
 	}
+
+	public String mute() {
+		String result = "";
+		String url = pref.getUrl() + "mute";
+		result = Util.executeHttpPost(url);
+		return result;
+	}
+
+	public String volumeUp(String value) {
+		return volume(value, "+");
+	}
+
+	public String volumeDown(String value) {
+		return volume(value, "-");
+	}
+
+	private String volume(String value, String direction) {
+		String result = "";
+		String url = pref.getUrl() + "volume/" + value + direction;
+		result = Util.executeHttpPost(url);
+		return result;
+	}
 }
