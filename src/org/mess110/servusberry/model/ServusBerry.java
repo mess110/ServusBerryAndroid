@@ -11,10 +11,12 @@ public class ServusBerry {
 
 	private API api;
 	private boolean connected;
+	private Context context;
 
 	public ServusBerry(Context context) {
 		this.api = new API(context);
 		this.connected = false;
+		this.context = context;
 	}
 
 	private boolean isServer(String jsonString) {
@@ -74,5 +76,9 @@ public class ServusBerry {
 
 	public void volUp() {
 		api.volumeUp("1000");
+	}
+	
+	public Context getContext() {
+		return context;
 	}
 }

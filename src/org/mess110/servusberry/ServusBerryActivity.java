@@ -71,7 +71,7 @@ public class ServusBerryActivity extends BaseActivity {
 			}
 		});
 
-		handler = new CustomHandler(pd);
+		handler = new CustomHandler(servusBerry, pd);
 
 		connect();
 	}
@@ -102,6 +102,12 @@ public class ServusBerryActivity extends BaseActivity {
 
 		String ipMask = wifiIp.getMask();
 		String url = servusBerry.findServerIpAddr(ipMask);
+
+		if (url.equals("")) {
+			servusBerry.setConnected(false);
+			return;
+		}
+
 		pref.setUrl(url);
 		servusBerry.setConnected(true);
 	}

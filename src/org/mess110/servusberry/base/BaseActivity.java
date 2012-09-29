@@ -62,11 +62,7 @@ public abstract class BaseActivity extends Activity {
 	public abstract boolean isConnected();
 
 	public void startActivity(Class<?> klass) {
-		if (isConnected()) {
-			Intent myIntent = new Intent(getBaseContext(), klass);
-			startActivity(myIntent);
-		} else {
-			connect();
-		}
+		Intent myIntent = new Intent(getBaseContext(), klass);
+		startActivity(myIntent);
 	}
 }
