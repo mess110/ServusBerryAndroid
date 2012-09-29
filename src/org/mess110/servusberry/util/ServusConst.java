@@ -15,8 +15,10 @@ public class ServusConst {
 	public static final String PREF_KEY = "org.mess110.servusberry.prefs";
 	public static final String URL_KEY = "url";
 	public static final String PATH_KEY = "path";
+	public static final String SCAN_PORT_KEY = "scanPort";
 	
 	public static final String DEFAULT_URL = "http://192.168.1.100:5000";
 	public static final String ROOT_PATH = "/";
 	public static final String LOG_TAG = "ServusBerry";
+	public static final String DEFAULT_SCAN_PORT = "5000";
 }

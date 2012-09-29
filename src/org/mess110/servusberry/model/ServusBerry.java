@@ -41,10 +41,11 @@ public class ServusBerry {
 		return isServer(jsonString);
 	}
 
-	public String findServerIpAddr(String ipMask) {
+	public String findServerIpAddr(String ipMask, String scanPort) {
 		String result = "";
 		for (int i = 1; i <= 255; i++) {
-			String url = "http://" + ipMask + String.valueOf(i) + ":5000/";
+			String url = "http://" + ipMask + String.valueOf(i) + ":"
+					+ scanPort + "/";
 			String jsonString = Util.executeHttpGet(url, true);
 			if (isServer(jsonString)) {
 				result = url;
@@ -77,7 +78,7 @@ public class ServusBerry {
 	public void volUp() {
 		api.volumeUp("1000");
 	}
-	
+
 	public Context getContext() {
 		return context;
 	}

@@ -101,7 +101,7 @@ public class ServusBerryActivity extends BaseActivity {
 		}
 
 		String ipMask = wifiIp.getMask();
-		String url = servusBerry.findServerIpAddr(ipMask);
+		String url = servusBerry.findServerIpAddr(ipMask, pref.getScanPort());
 
 		if (url.equals("")) {
 			servusBerry.setConnected(false);

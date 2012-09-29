@@ -32,4 +32,16 @@ public class Preferences {
 		return preferences.getString(ServusConst.URL_KEY,
 				ServusConst.DEFAULT_URL);
 	}
+
+	// TODO should it be string or int?
+	public String getScanPort() {
+		return preferences.getString(ServusConst.SCAN_PORT_KEY,
+				ServusConst.DEFAULT_SCAN_PORT);
+	}
+
+	public void setScanPort(String port) {
+		Editor editor = preferences.edit();
+		editor.putString(ServusConst.SCAN_PORT_KEY, port);
+		editor.commit();
+	}
 }
