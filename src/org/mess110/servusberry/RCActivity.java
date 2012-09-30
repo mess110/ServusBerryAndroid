@@ -1,10 +1,12 @@
 package org.mess110.servusberry;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
+import org.mess110.servusberry.base.BaseActivity;
 
-public class RCActivity extends Activity {
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class RCActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -17,4 +19,22 @@ public class RCActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_rc, menu);
         return true;
     }
+    
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_radio:
+			startActivity(RadioActivity.class);
+			break;
+		case R.id.menu_file_system:
+			startActivity(FileSystemActivity.class);
+			break;
+		case R.id.menu_killall:
+			startActivity(RadioActivity.class);
+			break;
+		default:
+			break;
+		}
+		return false;
+	}
 }

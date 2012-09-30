@@ -9,14 +9,26 @@ import android.content.Context;
 
 public class ServusBerry {
 
+	private static ServusBerry instance;
+
 	private API api;
 	private boolean connected;
 	private Context context;
 
-	public ServusBerry(Context context) {
-		this.api = new API(context);
+	private ServusBerry() {
 		this.connected = false;
+	}
+
+	public void init(Context context) {
 		this.context = context;
+		this.api = new API(context);
+	}
+
+	public static ServusBerry getInstance() {
+		if (instance == null) {
+			instance = new ServusBerry();
+		}
+		return instance;
 	}
 
 	private boolean isServer(String jsonString) {

@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class ServusBerryActivity extends BaseActivity {
 	private ServusBerry servusBerry;
@@ -24,7 +23,8 @@ public class ServusBerryActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		servusBerry = new ServusBerry(getApplicationContext());
+		servusBerry = ServusBerry.getInstance();
+		servusBerry.init(getApplicationContext());
 
 		pd = new ProgressDialog(this);
 		pd.setMessage("Detecting server..");
@@ -105,8 +105,6 @@ public class ServusBerryActivity extends BaseActivity {
 
 		pref.setUrl(url);
 		servusBerry.setConnected(true);
-		TextView statusText = (TextView) findViewById(R.id.statusText);
-		statusText.setText(url);
 	}
 
 	public boolean isConnected() {

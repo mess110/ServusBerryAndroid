@@ -4,7 +4,9 @@
     <string name="menu_settings">settings</string>
     <string name="menu_retry">retry</string>
     <string name="menu_exit">exit</string>
-    <string name="foo">bar</string>
+    <string name="menu_radio">radio</string>
+    <string name="retry">retry</string>
+    <string name="connect">connect</string>
     <string name="title_activity_servus_berry">ServusBerry</string>
     <string name="save">save</string>
     <string name="logo_image">logo_image</string>
