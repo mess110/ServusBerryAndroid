@@ -7,6 +7,10 @@ import org.mess110.servusberry.util.CustomHandler;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class ServusBerryActivity extends BaseActivity {
 	private ServusBerry servusBerry;
@@ -23,53 +27,45 @@ public class ServusBerryActivity extends BaseActivity {
 		pd = new ProgressDialog(this);
 		pd.setMessage("Detecting server..");
 
-		/*Button killall = (Button) findViewById(R.id.button1);
-		killall.setOnClickListener(new OnClickListener() {
+		Button retry = (Button) findViewById(R.id.button1);
+		retry.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				servusBerry.mute();
+				connect();
 			}
 		});
 
-		Button volDown = (Button) findViewById(R.id.button4);
-		volDown.setOnClickListener(new OnClickListener() {
+		/*
+		 * Button killall = (Button) findViewById(R.id.button1);
+		 * killall.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { servusBerry.mute(); } });
+		 * 
+		 * Button volDown = (Button) findViewById(R.id.button4);
+		 * volDown.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { servusBerry.volDown(); } });
+		 * 
+		 * Button volUp = (Button) findViewById(R.id.button5);
+		 * volUp.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { servusBerry.volUp(); } });
+		 * 
+		 * Button fileSystem = (Button) findViewById(R.id.button2);
+		 * fileSystem.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) {
+		 * startActivity(FileSystemActivity.class); } });
+		 * 
+		 * Button radio = (Button) findViewById(R.id.button3);
+		 * radio.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) {
+		 * startActivity(RadioActivity.class); } });
+		 */
 
-			@Override
-			public void onClick(View v) {
-				servusBerry.volDown();
-			}
-		});
-
-		Button volUp = (Button) findViewById(R.id.button5);
-		volUp.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				servusBerry.volUp();
-			}
-		});
-
-		Button fileSystem = (Button) findViewById(R.id.button2);
-		fileSystem.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				startActivity(FileSystemActivity.class);
-			}
-		});
-
-		Button radio = (Button) findViewById(R.id.button3);
-		radio.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				startActivity(RadioActivity.class);
-			}
-		});
-		*/
-
-		handler = new CustomHandler(servusBerry, pd);
+		handler = new CustomHandler(this, pd);
 
 		connect();
 	}
@@ -108,6 +104,8 @@ public class ServusBerryActivity extends BaseActivity {
 
 		pref.setUrl(url);
 		servusBerry.setConnected(true);
+		TextView statusText = (TextView) findViewById(R.id.statusText);
+		statusText.setText(url);
 	}
 
 	@Override
@@ -118,5 +116,9 @@ public class ServusBerryActivity extends BaseActivity {
 	@Override
 	public boolean isConnected() {
 		return servusBerry.isConnected();
+	}
+
+	public ServusBerry getServusBerry() {
+		return servusBerry;
 	}
 }
