@@ -7,6 +7,8 @@ import org.mess110.servusberry.util.CustomHandler;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -70,7 +72,6 @@ public class ServusBerryActivity extends BaseActivity {
 		connect();
 	}
 
-	@Override
 	public void connect() {
 		pd.show();
 
@@ -108,17 +109,33 @@ public class ServusBerryActivity extends BaseActivity {
 		statusText.setText(url);
 	}
 
-	@Override
-	public void update() {
-		servusBerry.update();
-	}
-
-	@Override
 	public boolean isConnected() {
 		return servusBerry.isConnected();
 	}
 
 	public ServusBerry getServusBerry() {
 		return servusBerry;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_servusberry, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_settings:
+			startActivity(SettingsActivity.class);
+			break;
+		case R.id.menu_retry:
+			connect();
+			break;
+		case R.id.menu_exit:
+			this.finish();
+			break;
+		}
+		return true;
 	}
 }

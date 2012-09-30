@@ -1,10 +1,13 @@
 <resources>
 
     <string name="app_name">ServusBerry</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_settings">settings</string>
+    <string name="menu_retry">retry</string>
+    <string name="menu_exit">exit</string>
+    <string name="foo">bar</string>
     <string name="title_activity_servus_berry">ServusBerry</string>
     <string name="save">save</string>
     <string name="logo_image">logo_image</string>
+    <string name="title_activity_rc">RCActivity</string>
 
 </resources>

@@ -35,6 +35,10 @@
             android:name=".RadioActivity"
             android:label="Radio" >
         </activity>
+        <activity
+            android:name=".RCActivity"
+            android:label="@string/title_activity_rc" >
+        </activity>
     </application>
 
 </manifest>
