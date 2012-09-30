@@ -38,35 +38,6 @@ public class ServusBerryActivity extends BaseActivity {
 			}
 		});
 
-		/*
-		 * Button killall = (Button) findViewById(R.id.button1);
-		 * killall.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { servusBerry.mute(); } });
-		 * 
-		 * Button volDown = (Button) findViewById(R.id.button4);
-		 * volDown.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { servusBerry.volDown(); } });
-		 * 
-		 * Button volUp = (Button) findViewById(R.id.button5);
-		 * volUp.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { servusBerry.volUp(); } });
-		 * 
-		 * Button fileSystem = (Button) findViewById(R.id.button2);
-		 * fileSystem.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) {
-		 * startActivity(FileSystemActivity.class); } });
-		 * 
-		 * Button radio = (Button) findViewById(R.id.button3);
-		 * radio.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) {
-		 * startActivity(RadioActivity.class); } });
-		 */
-
 		handler = new CustomHandler(this, pd);
 
 		connect();
